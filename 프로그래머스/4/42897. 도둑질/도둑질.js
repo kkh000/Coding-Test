@@ -1,21 +1,23 @@
 function solution(money) {
-    const n = money.length;
-    const dp1 = Array(n).fill(0); 
-    const dp2 = Array(n).fill(0);
+    const house = money.length;
+    const first = Array(house).fill(0); 
+    const second = Array(house).fill(0);
     
-    dp1[0] = money[0];
-    dp1[1] = Math.max(money[0], money[1]);
-    for (let i = 2; i < n - 1; i++) {
-        dp1[i] = Math.max(dp1[i - 1], dp1[i - 2] + money[i]);
+    first[0] = money[0];
+    first[1] = Math.max(money[0], money[1]);
+    for (let i = 2; i < house - 1; i++) {
+        first[i] = Math.max(first[i - 1], first[i - 2] + money[i]);
     }
-    const maxMoney1 = dp1[n - 2];
+    const maxMoney1 = first[house - 2];
     
-    dp2[0] = 0;
-    dp2[1] = money[1];
-    for (let i = 2; i < n; i++) {
-        dp2[i] = Math.max(dp2[i - 1], dp2[i - 2] + money[i]);
+    
+    
+    second[0] = 0;
+    second[1] = money[1];
+    for (let i = 2; i < house; i++) {
+        second[i] = Math.max(second[i - 1], second[i - 2] + money[i]);
     }
-    const maxMoney2 = dp2[n - 1];
+    const maxMoney2 = second[house - 1];
     
 
     return Math.max(maxMoney1, maxMoney2);
